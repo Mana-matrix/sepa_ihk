@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\tl_member;
-use App\tl_member_transactions;
+
 use Illuminate\Support\Facades\DB;
 class transactions extends Model
 {
-    protected $fillable = ['tr_type', 'tr_date'];
+    protected $fillable = ['tr_type', 'tr_date','confirmed'];
 
     public function getAll(){
 
