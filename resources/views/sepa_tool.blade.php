@@ -4,16 +4,14 @@
 
 ?>
 @section('left')
+
+
+    @include('sepa.transactions_container',['type'=>'generate','titel'=>'generate transaction'])
     @include('layouts.sepa_form')
 @endsection
 @section('right')
-    @if(Auth::check())
-
-
-
-        <!--div class="my-3"><?=""// ApiController::guzzle() ?> </div-->
-
-    @endif
+    @include('sepa.confirm')
+    @include('sepa.transactions_container',['type'=>'last','titel'=>'Last transactions'])
 @endsection
 <!-- end section right-->
 @section('content')

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\tl_member;
+use App\tl_member_transactions;
+use Illuminate\Support\Facades\DB;
 class transactions extends Model
 {
     protected $fillable = ['tr_type', 'tr_date'];
@@ -23,14 +25,27 @@ class transactions extends Model
         //$item=$item->transactions()->detach($unconfirmed->id);
 
     }
-    public static function unconfirmed(){
-        return self::where('confirmed','!=',1)->get();
+    public function unconfirmed(){
+        return $this->where('confirmed','!=',1)->get();
     }
+    public function setFeeAttribute(){
+
+    }
+    public function getFeeAttribute(){
+        $sql="Select SUM(fee) as fee From tl_member_transactions Where transactions_id=$this->id";
+        $count=DB::select($sql);
+        $this->attributes['fee']=$count[0]->fee!=null?$count[0]->fee:0;
+     return $this->attributes['fee'];
+    }
+
+
     public function tl_member()
     {
+
         return $this->belongsToMany('App\tl_member')->as('transactions')->withTimestamps();
     }
     public function tl_member_transactions(){
+
         return $this->hasMany('App\tl_member_transactions');
     }
 }

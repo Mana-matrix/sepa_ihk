@@ -86,14 +86,18 @@
         <div class="container-fluid">
             <div class="row flex-xl-nowrap">
                 <div class="col-12 col-md-3 col-xl-2 bd-sidebar nav" role="contentinfo">
+                    <div class="card-body container-fluid">
                     @yield('left')
+                    </div>
                 </div>
                 <main class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
                     @yield('content')
                 </main>
 
                 <div class="d-none d-xl-block col-xl-2 bd-toc" role="contentinfo">
+                    <div class="card-body container-fluid">
                     @yield('right')
+                    </div>
                 </div>
             </div>
         </div>
